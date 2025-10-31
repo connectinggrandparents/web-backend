@@ -4,12 +4,12 @@ from email.mime.multipart import MIMEMultipart
 import sys
 import json
 
-def send_verification(nombre,apellidos,texto,mail):
+def send_mail(nombre,apellidos,texto,mail):
     # Configuración
     smtp_server = "smtp.gmail.com"
     smtp_port = 587
     email_usuario = "connectinggrandparents@gmail.com"
-    email_password = "qzzv wvbv smfo ggmf"
+    email_password = "ywew ndna vjmd tvlf"
 
     # Crear el mensaje
     mensaje = MIMEMultipart()
@@ -43,4 +43,4 @@ def send_verification(nombre,apellidos,texto,mail):
         return f"Error al enviar el correo: {e}"
 
 
-    # Contraseña de aplicación: qzzv wvbv smfo ggmf
+    # Contraseña de aplicación: ywew ndna vjmd tvlf
