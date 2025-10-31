@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+    html {
+        width: calc(100vw - 16px);
+        height: calc(100vh - 16px);
+        margin: 8px;
+    }
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    #form.disable {
+        filter: grayscale(1);
+        pointer-events: none;
+        opacity: .8;
+    }
+    #form * {
+        font-family: "Roboto Slab","Times New Roman",serif;
+    }
+    #form {
+        transition: all .5s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        vertical-align: flex-start;
+        height: 100%;
+    }
+    #form span {
+        width: 100%;
+        display: flex;
+    }
+    #form label {
+        min-width: 100px;
+        text-align: right;
+        padding-right: 10px;
+    }
+    #form span *:not(label) {
+        width: calc(100% - 100px);
+        border: none;
+        outline: solid 1px #e91e63;
+        resize: none;
+        border-radius: 4px;
+        box-shadow: 0 0 0 transparent;
+        transition: all .5s ease;
+        color: #666;
+        padding: 5px;
+    }
+    #form span *:not(label):focus {
+        box-shadow: 0 1px 10px -2px #e91e63;
+    }
+    #form span:has(textarea) {
+        height: 100%;
+    }
+    #form button {
+        border: none;
+        outline: solid 1px white;
+        background: #e91e63;
+        border-radius: 4px;
+        padding: 5px;
+        box-shadow: 0 0 0 transparent;
+        color: white;
+        transition: .3s ease;
+    }
+    #form button:active {
+        box-shadow: 0 1px 10px -2px #e91e63;
+        transition: .1s ease;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Gmail</title>
+</head>
+<body>
+    <div id="form">
+        <span><label>Izena</label><input id="name"></span>
+        <span><label>Abizenak</label><input id="surnames"></span>
+        <span><label>Mezua</label><textarea id="text"></textarea></span>
+        <button onclick="sendEmail()">Bidali</button>
+    </div>
+</body>
+</html>
+<script>
+    const LINK = '';
+  
+    async function sendEmail() {
+        let NAME = document.querySelector('#name').value;
+        let SURNAMES = document.querySelector('#surnames').value;
+        let TEXT = document.querySelector('#text').value;
+        if (
+            NAME == '' ||
+            SURNAMES == '' ||
+            TEXT == ''
+            ) return;
+        document.querySelector('#form').classList.add('disable')
+        let response = await fetch(`${LINK}:8080/comment`,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                name:NAME,
+                surnames:SURNAMES,
+                text:TEXT
+            })
+        }).then(response => response.json())
+        document.body.textContent = response.response
+    }
+</script>
