@@ -3,7 +3,7 @@ import json
 from datetime import datetime, timedelta
 import random
 import os
-from mail import send_mail
+from mail.mail import send_mail
 
 from flask_cors import CORS
 
