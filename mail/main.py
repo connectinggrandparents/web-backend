@@ -8,7 +8,7 @@ from mail.mail import send_mail
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*"}}, methods=["GET", "POST", "PUT", "DELETE"])
 
 
 @app.route('/comment', methods=['POST'])
