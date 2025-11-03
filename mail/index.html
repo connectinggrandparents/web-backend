@@ -84,7 +84,7 @@
 </body>
 </html>
 <script>
-    const LINK = '';
+    const LINK = 'https://web-backend-d4me.onrender.com/';
   
     async function sendEmail() {
         let NAME = document.querySelector('#name').value;
@@ -96,7 +96,7 @@
             TEXT == ''
             ) return;
         document.querySelector('#form').classList.add('disable')
-        let response = await fetch(`${LINK}:8080/comment`,{
+        let response = await fetch(`${LINK}/comment`,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
